@@ -21,9 +21,13 @@ namespace ZETag {
     function Send_Uart_data(data_array: number[], num: number):void {
         o = 0
         for (let n = 0; n <= num - 1; n++) {
-            bserial.binserial_write(data_array[n])
+            binserial_write(data_array[n])
             basic.pause(5)
         }
+    }
+
+    function binserial_write(text: number): void {
+            return;
     }
 
 /**
@@ -34,37 +38,37 @@ namespace ZETag {
     //% CH_SPACE.min=100 CH_SPACE.max=200 CH_SPACE.defl=100
     export function Set_channel_spacing(CH_SPACE: number) {
         // FF 00 03 F0 64 56; 100KHz設定
-        // FF+00+03+F0=1F2=498(10)
+        // FF+00+03+F0=1F2 -> 0xf2
         Send_Uart_data([
-            255,
-            0,
-            3,
-            240,
+            0xff,
+            0x00,
+            0x03,
+            0xf0,
             CH_SPACE,
-            (498 + ch_spacing) % 256
+            (0xf2 + ch_spacing) % 256
         ], 6)
     }
 
     //% blockId=Send_data block="Send ZETag data %data_array %num"
     //% weight=80 blockGap=8
     export function Send_data(data_array: number[], num: number) {
-        // 255+2+128=385
+        // 0xff+2+0x80=0x181 -> 0x81
         // FF 00 02 80
-        CheckSum = 385 + num
+        CheckSum = 0x81 + num
         Send_Uart_data([
-            255,
-            0,
+            0xff,
+            0x00,
             num + 2,
-            128
+            0x80
         ], 4)
         o = 0
         for (let index = 0; index < num; index++) {
-            bserial.binserial_write(data_array[o])
+            binserial_write(data_array[o])
             basic.pause(5)
             CheckSum = CheckSum + data_array[o]
             o += 1
         }
-        bserial.binserial_write(CheckSum % 256)
+        binserial_write(CheckSum % 256)
         basic.pause(5)
     }
 
@@ -72,21 +76,18 @@ namespace ZETag {
     //% weight=80 blockGap=8
     //% TX_Power.min=1 TX_Power.max=10 TX_Power.defl=10
     export function Set_TX_Power(TX_Power: number) {
-        if (TX_Power > 10) {
-            TX_Power_data = 20
-        } else {
-            TX_Power_data = TX_Power * 2
-        }
+        TX_Power_data = TX_Power * 2
         // FF 00 03 41 10 53; 出力8dB設定
-        // FF+00+03+41=143=323(10)
+        // FF+00+03+41=0x143 -> 0x43
         Send_Uart_data([
-            255,
-            0,
-            3,
-            65,
+            0xff,
+            0x00,
+            0x03,
+            0x41,
             TX_Power_data,
-            (323 + TX_Power_data) % 256
+            (0x43 + TX_Power_data) % 256
         ], 6)
+        basic.pause(5)
     }
 
     //% blockId=Set_Frequency block="Set Frequency %Frequency (Hz) %CH_num (ch) %CH_step"
@@ -103,11 +104,11 @@ namespace ZETag {
         Base_frequency = Frequency
         CheckSum = 0
         Para_array = [
-            255,
-            0,
-            8 + ch_num,
-            64,
-            1,
+            0xff,
+            0x00,
+            0x08 + ch_num,
+            0x40,
+            0x01,
             Math.idiv(Base_frequency, 16777216),
             Math.idiv(Base_frequency, 65536) % 256,
             Math.idiv(Base_frequency, 256) % 256,
