@@ -1,14 +1,16 @@
-let Para_array: number[] = []
-let ch_spacing = 0
-let CheckSum = 0
-let o = 0
-let TX_Power_data = 0
-let ch_num = 0
-let Base_frequency = 0
 let Counter2 = 0
+let Base_frequency = 0
+let ch_num = 0
+let TX_Power_data = 0
+let o = 0
+let CheckSum = 0
+let ch_spacing = 0
+let Para_array: number[] = []
 
+//% weight=70 icon="\uf482" color=190 block="ZETag"
 namespace ZETag {
     //% blockId=Channel_Spacing block="ZETag Set Channel Space %text"
+    //% CH_Space.min=100 CH_Space.max=200 CH_Space.defl=100
     export function Set_channel_spacing(CH_space: number) {
         if (CH_space > 200) {
             ch_spacing = 200
