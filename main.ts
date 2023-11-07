@@ -70,6 +70,7 @@ namespace ZETag {
         ], 6)
     }
 
+    //% blockId=Send_Uart_data block="ZETag Send uart data %text %text"
     export function Send_Uart_data(list: number[], e_num: number) {
         o = 0
         for (let n = 0; n <= e_num - 1; n++) {
