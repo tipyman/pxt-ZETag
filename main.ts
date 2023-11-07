@@ -6,31 +6,31 @@
  
 enum ZETag_CH_NUMBER{
     //% block="1"
-    CH_num = 1,
+    CH_1 = 1,
     //% block="2"
-    CH_num = 2,
+    CH_2 = 2,
     //% block="3"
-    CH_num = 3,
+    CH_3 = 3,
     //% block="4"
-    CH_num = 4,
+    CH_4 = 4,
     //% block="5"
-    CH_num = 5,
+    CH_5 = 5,
     //% block="6"
-    CH_num = 6
+    CH_6 = 6
 }
 
 enum ZETag_CH_SPACE {
     //% block="100"
-    CH_space = 100,
+    CH_100 = 100,
     //% block="200"
-    CH_space = 200
+    CH_200 = 200
 }
 
 enum ZETag_CH_STEP {
     //% block="1"
-    CH_step = 1,
+    CH_step1 = 1,
     //% block="2"
-    CH_step = 2
+    CH_step2 = 2
 }
 
 /**
@@ -60,7 +60,7 @@ namespace ZETag {
  */
     //% blockId=Channel_Spacing block="Set Channel Space %s"
     //% weight=80 blockGap=8
-    export function Set_channel_spacing(s: CH_space): number {
+    export function Set_channel_spacing(s: ZETag_CH_SPACE): void {
         // FF 00 03 F0 64 56; 100KHz設定
         // FF+00+03+F0=1F2=498(10)
         Send_Uart_data([
@@ -68,7 +68,7 @@ namespace ZETag {
             0,
             3,
             240,
-            CH_space,
+            s,
             (498 + ch_spacing) % 256
         ], 6)
     }
