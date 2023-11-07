@@ -76,6 +76,7 @@ namespace ZETag {
         }
     }
 
+    //% blockId=Set_Frequency block="ZETag Set Frequency %text %text %text"
     export function Set_Frequency(Frequency: number, CH_num: number, step: number) {
         if (step == 0) {
             o = 1
