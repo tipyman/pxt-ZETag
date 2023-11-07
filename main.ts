@@ -89,7 +89,7 @@ namespace ZETag {
         ], 6)
     }
 
-    //% blockId=Set_Frequency block="Set Frequency %Frequency (Hz) %CH_num %CH_step" (ch)
+    //% blockId=Set_Frequency block="Set Frequency %Frequency (Hz) %CH_num (ch) %CH_step"
     //% weight=80 blockGap=8
     //% CH_num.min=1 CH_num.max=6 CH_num.defl=2
     //% CH_step.min=1 CH_num.step=2 CH_step.defl=2
