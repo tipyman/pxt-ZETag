@@ -5,7 +5,8 @@
     "dependencies": {
         "core": "*",
         "radio": "*",
-        "microphone": "*"
+        "microphone": "*",
+        "binserial": "github:m-sida/binserial#8acb9f6a18345da9e6c49c3b59e11d0172ea6e6d"
     },
     "files": [
         "README.md",

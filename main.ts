@@ -1,13 +1,3 @@
-/**
- * makecode for ZETag cotrol Package
- * By Socionext Inc. 2023 and ZETA alliance Japan
- * Written by M. Urade
-*/
- 
-/**
- * ZETag block
- */
-//% weight=100 color=190 icon="\uf482", block="ZETag"
 namespace ZETag {
     let Para_array: number[] = []
     let ch_spacing = 0
