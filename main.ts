@@ -37,6 +37,7 @@ namespace ZETag {
             CH_SPACE,
             (0xf2 + ch_spacing) % 256
         ], 6)
+        basic.pause(100)
     }
 
     //% blockId=Send_data block="Send ZETag data %data_array %num"
@@ -59,7 +60,7 @@ namespace ZETag {
             o += 1
         }
         binserial_write(CheckSum % 256)
-        basic.pause(5)
+        basic.pause(100)
     }
 
     //% blockId=TX_Power block="TX Power %TX_Power (dB)"
@@ -77,7 +78,7 @@ namespace ZETag {
             TX_Power_data,
             (0x43 + TX_Power_data) % 256
         ], 6)
-        basic.pause(5)
+        basic.pause(100)
     }
 
     //% blockId=Set_Frequency block="Set Frequency %Frequency (Hz) %CH_num (ch) %CH_step"
@@ -127,5 +128,6 @@ namespace ZETag {
         CheckSum = CheckSum % 256
         Para_array[10 + ch_num] = CheckSum
         Send_Uart_data(Para_array, 11 + ch_num)
+        basic.pause(100)
     }
 }
