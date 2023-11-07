@@ -29,7 +29,7 @@ namespace ZETag {
 /**
  * set channel spacing
  */
-    //% blockId=Channel_Spacing block="Set Channel Space %s"
+    //% blockId=Channel_Spacing block="Set Channel Space %s (KHz)"
     //% weight=80 blockGap=8
     //% CH_SPACE.min=100 CH_SPACE.max=200 CH_SPACE.defl=100
     export function Set_channel_spacing(CH_SPACE: number) {
@@ -89,7 +89,7 @@ namespace ZETag {
         ], 6)
     }
 
-    //% blockId=Set_Frequency block="Set Frequency %Frequency %CH_num %step"
+    //% blockId=Set_Frequency block="Set Frequency %Frequency (Hz) %CH_num %CH_step" (ch)
     //% weight=80 blockGap=8
     //% CH_num.min=1 CH_num.max=6 CH_num.defl=2
     //% CH_step.min=1 CH_num.step=2 CH_step.defl=2
