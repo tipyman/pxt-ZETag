@@ -1,3 +1,13 @@
+/**
+ * makecode ZETag module Package.
+ * By 2023 Socionext Inc. and ZETA alliance Japan
+ * Written by M.Urade　2023/11/8
+ */
+
+/**
+ * ZETag block
+ */
+//% weight=100 color=190 icon="\uf482" block="ZETag"
 namespace ZETag {
     let Para_array: number[] = []
     let ch_spacing = 0
