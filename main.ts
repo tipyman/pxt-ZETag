@@ -1,15 +1,14 @@
-let Para_array: number[] = []
-let ch_spacing = 0
-let CheckSum = 0
-let o = 0
-let TX_Power_data = 0
-let ch_num = 0
-let Base_frequency = 0
 let Counter2 = 0
+let Base_frequency = 0
+let ch_num = 0
+let TX_Power_data = 0
+let o = 0
+let CheckSum = 0
+let ch_spacing = 0
+let Para_array: number[] = []
 
-//% color=190 weight=100 icon="\uf482" block="ZETag"
 namespace ZETag {
-    //% blockId=Channel_Spacing block="ZETag Set Channel Space %text"
+    //% blockId=Channel_Spacing block="ZETag Set Channel Space"
     //% CH_Space.min=100 CH_Space.max=200 CH_Space.defl=100
     export function Set_channel_spacing(CH_space: number) {
         if (CH_space > 200) {
@@ -29,7 +28,7 @@ namespace ZETag {
         ], 6)
     }
 
-    //% blockId=Send_data block="ZETag Send data %text %text"
+    //% blockId=Send_data block="ZETag Send ZETag data"
     export function Send_data(list: number[], e_num: number) {
         // 255+2+128=385
         // FF 00 02 80
@@ -51,7 +50,7 @@ namespace ZETag {
         basic.pause(5)
     }
 
-    //% blockId=TX_Power block="ZETag TX Power %text"
+    //% blockId=TX_Power block="ZETag TX Power"
     export function Set_TX_Power(TX_Power: number) {
         if (TX_Power > 10) {
             TX_Power_data = 20
@@ -70,7 +69,7 @@ namespace ZETag {
         ], 6)
     }
 
-    //% blockId=Send_Uart_data block="ZETag Send uart data %text %text"
+    //% blockId=Send_Uart_data block="ZETag Send uart data"
     export function Send_Uart_data(list: number[], e_num: number) {
         o = 0
         for (let n = 0; n <= e_num - 1; n++) {
@@ -79,7 +78,7 @@ namespace ZETag {
         }
     }
 
-    //% blockId=Set_Frequency block="ZETag Set Frequency %text %text %text"
+    //% blockId=Set_Frequency block="ZETag Set Frequency"
     export function Set_Frequency(Frequency: number, CH_num: number, step: number) {
         if (step == 0) {
             o = 1
