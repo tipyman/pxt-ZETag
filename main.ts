@@ -97,8 +97,6 @@ namespace ZETag {
         o = CH_step
         if (CH_num <= 1) {
             ch_num = -1
-        } else if (CH_num > 6) {
-            ch_num = 6
         } else {
             ch_num = CH_num
         }
