@@ -40,7 +40,7 @@ namespace ZETag {
             0,
             3,
             240,
-            s,
+            CH_SPACE,
             (498 + ch_spacing) % 256
         ], 6)
     }
