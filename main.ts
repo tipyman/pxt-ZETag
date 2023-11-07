@@ -98,7 +98,7 @@ namespace ZETag {
 
     //% blockId=TX_Power block="TX Power %TX_Power"
     //% weight=80 blockGap=8
-    //% TX_Power.min=0 TX_Power.max=10 TX_Power.defl=10
+    //% TX_Power.min=1 TX_Power.max=10 TX_Power.defl=10
     export function Set_TX_Power(TX_Power: number) {
         if (TX_Power > 10) {
             TX_Power_data = 20
