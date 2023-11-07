@@ -29,21 +29,21 @@ namespace ZETag {
     }
 
     //% blockId=Send_data block="ZETag Send ZETag data"
-    export function Send_data(list: number[], e_num: number) {
+    export function Send_data(data_array: number[], num: number) {
         // 255+2+128=385
         // FF 00 02 80
-        CheckSum = 385 + e_num
+        CheckSum = 385 + num
         Send_Uart_data([
             255,
             0,
-            e_num + 2,
+            num + 2,
             128
         ], 4)
         o = 0
-        for (let index = 0; index < e_num; index++) {
-            bserial.binserial_write(list[o])
+        for (let index = 0; index < num; index++) {
+            bserial.binserial_write(data_array[o])
             basic.pause(5)
-            CheckSum = CheckSum + list[o]
+            CheckSum = CheckSum + data_array[o]
             o += 1
         }
         bserial.binserial_write(CheckSum % 256)
@@ -70,15 +70,16 @@ namespace ZETag {
     }
 
     //% blockId=Send_Uart_data block="ZETag Send uart data"
-    export function Send_Uart_data(list: number[], e_num: number) {
+    export function Send_Uart_data(data_array: number[], num: number) {
         o = 0
-        for (let n = 0; n <= e_num - 1; n++) {
-            bserial.binserial_write(list[n])
+        for (let n = 0; n <= num - 1; n++) {
+            bserial.binserial_write(data_array[n])
             basic.pause(5)
         }
     }
 
     //% blockId=Set_Frequency block="ZETag Set Frequency"
+    //% CH_num.min=1 CH_num.max=6 CH_num.defl=1
     export function Set_Frequency(Frequency: number, CH_num: number, step: number) {
         if (step == 0) {
             o = 1
