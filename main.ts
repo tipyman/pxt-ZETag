@@ -1,21 +1,66 @@
-let Counter2 = 0
-let Base_frequency = 0
-let ch_num = 0
-let TX_Power_data = 0
-let o = 0
-let CheckSum = 0
-let ch_spacing = 0
-let Para_array: number[] = []
+/**
+ * makecode for ZETag cotrol Package
+ * By Socionext Inc. 2023 and ZETA alliance Japan
+ * Written by M. Urade
+*/
+ 
+enum ZETag_CH_NUMBER{
+    //% block="1"
+    CH_num = 1,
+    //% block="2"
+    CH_num = 2,
+    //% block="3"
+    CH_num = 3,
+    //% block="4"
+    CH_num = 4,
+    //% block="5"
+    CH_num = 5,
+    //% block="6"
+    CH_num = 6
+}
 
+enum ZETag_CH_SPACE {
+    //% block="100"
+    CH_space = 100,
+    //% block="200"
+    CH_space = 200
+}
+
+enum ZETag_CH_STEP {
+    //% block="1"
+    CH_step = 1,
+    //% block="2"
+    CH_step = 2
+}
+
+/**
+ * ZETag block
+ */
+//% weight=100 cololr=190 icon="\uf482", block="ZETag"
 namespace ZETag {
-    //% blockId=Channel_Spacing block="ZETag Set Channel Space"
-    //% CH_Space.min=100 CH_Space.max=200 CH_Space.defl=100
-    export function Set_channel_spacing(CH_space: number) {
-        if (CH_space > 200) {
-            ch_spacing = 200
-        } else {
-            ch_spacing = CH_space
+    let Para_array: number[] = []
+    let ch_spacing = 0
+    let CheckSum = 0
+    let o = 0
+    let TX_Power_data = 0
+    let ch_num = 0
+    let Base_frequency = 0
+    let Counter2 = 0
+
+    function Send_Uart_data(data_array: number[], num: number):void {
+        o = 0
+        for (let n = 0; n <= num - 1; n++) {
+            bserial.binserial_write(data_array[n])
+            basic.pause(5)
         }
+    }
+
+/**
+ * set channel spacing
+ */
+    //% blockId=Channel_Spacing block="Set Channel Space %s"
+    //% weight=80 blockGap=8
+    export function Set_channel_spacing(s: CH_space): number {
         // FF 00 03 F0 64 56; 100KHz設定
         // FF+00+03+F0=1F2=498(10)
         Send_Uart_data([
@@ -23,12 +68,13 @@ namespace ZETag {
             0,
             3,
             240,
-            ch_spacing,
+            CH_space,
             (498 + ch_spacing) % 256
         ], 6)
     }
 
-    //% blockId=Send_data block="ZETag Send ZETag data"
+    //% blockId=Send_data block="Send ZETag data %data_array %num"
+    //% weight=80 blockGap=8
     export function Send_data(data_array: number[], num: number) {
         // 255+2+128=385
         // FF 00 02 80
@@ -50,7 +96,8 @@ namespace ZETag {
         basic.pause(5)
     }
 
-    //% blockId=TX_Power block="ZETag TX Power"
+    //% blockId=TX_Power block="TX Power %TX_Power"
+    //% weight=80 blockGap=8
     export function Set_TX_Power(TX_Power: number) {
         if (TX_Power > 10) {
             TX_Power_data = 20
@@ -69,17 +116,9 @@ namespace ZETag {
         ], 6)
     }
 
-    //% blockId=Send_Uart_data block="ZETag Send uart data"
-    export function Send_Uart_data(data_array: number[], num: number) {
-        o = 0
-        for (let n = 0; n <= num - 1; n++) {
-            bserial.binserial_write(data_array[n])
-            basic.pause(5)
-        }
-    }
 
-    //% blockId=Set_Frequency block="ZETag Set Frequency"
-    //% CH_num.min=1 CH_num.max=6 CH_num.defl=1
+    //% blockId=Set_Frequency block="Set Frequency %Frequency %CH_num %step"
+    //% weight=80 blockGap=8
     export function Set_Frequency(Frequency: number, CH_num: number, step: number) {
         if (step == 0) {
             o = 1

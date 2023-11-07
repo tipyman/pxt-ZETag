@@ -6,7 +6,8 @@
         "core": "*",
         "radio": "*",
         "microphone": "*",
-        "binserial": "github:m-sida/binserial#8acb9f6a18345da9e6c49c3b59e11d0172ea6e6d"
+        "binserial": "github:m-sida/binserial#8acb9f6a18345da9e6c49c3b59e11d0172ea6e6d",
+        "BME280": "github:makecode-extensions/bme280#v1.1.0"
     },
     "files": [
         "README.md",
