@@ -4,39 +4,10 @@
  * Written by M. Urade
 */
  
-enum ZETag_CH_NUMBER{
-    //% block="1"
-    CH_1 = 1,
-    //% block="2"
-    CH_2 = 2,
-    //% block="3"
-    CH_3 = 3,
-    //% block="4"
-    CH_4 = 4,
-    //% block="5"
-    CH_5 = 5,
-    //% block="6"
-    CH_6 = 6
-}
-
-enum ZETag_CH_SPACE {
-    //% block="100"
-    CH_100 = 100,
-    //% block="200"
-    CH_200 = 200
-}
-
-enum ZETag_CH_STEP {
-    //% block="1"
-    CH_step1 = 1,
-    //% block="2"
-    CH_step2 = 2
-}
-
 /**
  * ZETag block
  */
-//% weight=100 cololr=190 icon="\uf482", block="ZETag"
+//% weight=100 color=190 icon="\uf482", block="ZETag"
 namespace ZETag {
     let Para_array: number[] = []
     let ch_spacing = 0
@@ -60,7 +31,8 @@ namespace ZETag {
  */
     //% blockId=Channel_Spacing block="Set Channel Space %s"
     //% weight=80 blockGap=8
-    export function Set_channel_spacing(s: ZETag_CH_SPACE): void {
+    //% CH_SPACE.min=100 CH_SPACE.max=200 CH_SPACE.defl=100
+    export function Set_channel_spacing(CH_SPACE: number) {
         // FF 00 03 F0 64 56; 100KHz設定
         // FF+00+03+F0=1F2=498(10)
         Send_Uart_data([
@@ -96,7 +68,7 @@ namespace ZETag {
         basic.pause(5)
     }
 
-    //% blockId=TX_Power block="TX Power %TX_Power"
+    //% blockId=TX_Power block="TX Power %TX_Power (dB)"
     //% weight=80 blockGap=8
     //% TX_Power.min=1 TX_Power.max=10 TX_Power.defl=10
     export function Set_TX_Power(TX_Power: number) {
@@ -117,17 +89,12 @@ namespace ZETag {
         ], 6)
     }
 
-
     //% blockId=Set_Frequency block="Set Frequency %Frequency %CH_num %step"
     //% weight=80 blockGap=8
-    export function Set_Frequency(Frequency: number, CH_num: number, step: number) {
-        if (step == 0) {
-            o = 1
-        } else if (step >= 2) {
-            o = 2
-        } else {
-            o = step
-        }
+    //% CH_num.min=1 CH_num.max=6 CH_num.defl=2
+    //% CH_step.min=1 CH_num.step=2 CH_step.defl=2
+    export function Set_Frequency(Frequency: number, CH_num: number, CH_step: number) {
+        o = CH_step
         if (CH_num <= 1) {
             ch_num = -1
         } else if (CH_num > 6) {
