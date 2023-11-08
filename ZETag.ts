@@ -41,7 +41,7 @@ namespace ZETag {
             0x03,
             0xf0,
             CH_SPACE,
-            (0xf2 + ch_spacing) % 256
+            (0xf2 + CH_SPACE) % 256
         ], 6)
         basic.pause(100)
     }
