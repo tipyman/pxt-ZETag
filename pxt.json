@@ -5,12 +5,13 @@
     "dependencies": {
         "core": "*",
         "radio": "*",
-        "microphone": "*"
+        "microphone": "*",
+        "binserial": "github:m-sida/binserial#c20ec1d5a780927a4dcdae818daa64e5575e3bc5"
     },
     "files": [
         "README.md",
         "main.blocks",
-        "main.ts"
+        "ZETag.ts"
     ],
     "testFiles": [
         "test.ts"
