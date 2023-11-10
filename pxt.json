@@ -6,7 +6,7 @@
         "core": "*",
         "radio": "*",
         "microphone": "*",
-        "binserial": "github:m-sida/binserial#c20ec1d5a780927a4dcdae818daa64e5575e3bc5"
+        "binserial": "github:m-sida/binserial#0d73d60e4ab19a38adb55549d0083a847be1feb8"
     },
     "files": [
         "README.md",
