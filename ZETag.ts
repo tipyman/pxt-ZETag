@@ -66,6 +66,7 @@ namespace ZETag {
     }
 
     //% blockId=Set_Frequency block="Set Frequency %Frequency (Hz) %CH_num (ch) %CH_step"
+    //% Frequency.min=470000000 Frequency.max=928000000 Frequency.defl=922080000
     //% CH_num.min=1 CH_num.max=6 CH_num.defl=2
     //% CH_step.min=1 CH_step.max=2 CH_step.defl=2
     export function Set_Frequency(Frequency: number, CH_num: number, CH_step: number) {
